@@ -1,0 +1,16 @@
+.container {
+  z-index: 99;
+  width: 100%;
+  margin-top: 30px;
+  // max-height: 100%;
+  // height: auto;
+  // position: absolute;
+  // left: 0;
+  // top: 50%;
+  // transform: translateY(-50%);
+  .title {
+    font-weight: bold;
+    color: #6d727b;
+    margin: 20px 0 10px;
+  }
+}

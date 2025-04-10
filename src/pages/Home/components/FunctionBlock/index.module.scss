@@ -1,0 +1,61 @@
+.functionBlock {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  padding: 6px 0 12px 6px;
+  z-index: 9999;
+  cursor: pointer;
+  svg {
+    color: #636972;
+  }
+  // &:hover {
+  //   svg {
+  //     color: #326cf2;
+  //   }
+  // }
+}
+.activeFunctionBlock {
+  svg {
+    color: #326cf2;
+  }
+}
+.popover {
+  width: 204px;
+  padding: 0;
+  height: calc(100vh - 74px);
+  max-height: 400px;
+  min-height: 250px;
+  .label {
+    color: #646a73;
+    margin: 0 0 8px 18px;
+  }
+  .functionList {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 16px;
+    & > div {
+      width: 24px;
+      height: 24px;
+      margin: 0 12px 12px 0;
+      cursor: pointer;
+      border-radius: 6px;
+      /* text-align: center; */
+      line-height: 24px;
+      &:hover {
+        background: #ededee;
+      }
+    }
+  }
+  :global {
+    .ant-menu-item {
+      svg {
+        padding: 3px 3px 3px 0;
+        width: 18px;
+        height: 18px;
+        position: relative;
+        top: 6px;
+        margin-right: 9px;
+      }
+    }
+  }
+}

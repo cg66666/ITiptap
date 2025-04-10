@@ -1,0 +1,116 @@
+.container {
+  overflow: hidden;
+  position: absolute;
+  padding: 9px 12px 0px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: white;
+  border: 1px solid rgb(222, 224, 227);
+  &:hover {
+    .placement {
+      opacity: 1;
+    }
+  }
+  .header {
+    position: relative;
+    font-size: 12px;
+    color: #646a73;
+    line-height: 20px;
+    padding-left: 8px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 2px;
+      height: 16px;
+      background-color: #bbbfc4 !important;
+      border-radius: 1px;
+    }
+  }
+  .content {
+    margin: 6px 0;
+    .comment {
+      display: flex;
+      margin: 12px 0;
+      position: relative;
+      .itemOperate {
+        position: absolute;
+        opacity: 0;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #8038fc;
+        color: white;
+        font-size: 12px;
+        line-height: 32px;
+        text-align: center;
+      }
+      .innerContent {
+        margin-left: 12px;
+        flex: 1;
+
+        .commentDetail {
+          display: flex;
+          font-size: 12px;
+          .time {
+            color: rgb(143, 149, 158);
+            margin-left: 4px;
+          }
+        }
+        .text {
+          margin-top: 4px;
+          font-size: 14px;
+        }
+      }
+      &:hover {
+        .itemOperate {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .placement {
+    height: 20px;
+    padding-left: 44px;
+    font-size: 12px;
+    color: #8f959e;
+    opacity: 0;
+  }
+  .operate {
+    margin: 10px 0 16px;
+    .commentBtn {
+      display: flex;
+      justify-content: right;
+      margin-top: 12px;
+      button {
+        font-size: 12px;
+        width: 48px;
+        height: 28px;
+      }
+    }
+    input::placeholder {
+      color: #8f959e;
+    }
+  }
+}
+.isSelected {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    right: -1px;
+    border-top: 6px solid rgb(255, 198, 10);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+}

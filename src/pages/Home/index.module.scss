@@ -1,0 +1,168 @@
+.container {
+  width: 100%;
+  height: 100%;
+  .header {
+    height: 64px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #dee0e3;
+  }
+  .content {
+    position: relative;
+    .leftHeader {
+      // position: absolute;
+      width: 275px;
+      // width: calc((100% - 815px) / 2);
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding-left: 12px;
+      position: absolute;
+      z-index: 9;
+    }
+    .rightContainer {
+      display: flex;
+      justify-content: space-between;
+      .barLine {
+        position: absolute;
+        left: 310px;
+      }
+      .linkPopup {
+        background: white;
+        width: 430px;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        border-radius: 6px;
+        z-index: 99;
+        padding: 8px 20px;
+        line-height: 32px;
+        font-size: 14px;
+        box-shadow: 0 3px 12px 0 rgba(31, 35, 41, 0.1);
+        border-color: rgb(222, 224, 227);
+        border: 1px solid rgb(222, 224, 227);
+        color: rgb(143, 149, 158);
+        display: flex;
+        justify-content: space-between;
+        .label {
+          color: rgb(31, 35, 41);
+        }
+      }
+      .showHref {
+        display: flex;
+        position: absolute;
+        padding: 8px 15px;
+        border-radius: 6px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 3px 12px 0 rgba(31, 35, 41, 0.1);
+        border-color: rgb(222, 224, 227);
+        border: 1px solid rgb(222, 224, 227);
+        // color: rgb(143, 149, 158);
+        font-size: 14px;
+        .text {
+          min-width: 249px;
+          margin-right: 15px;
+          line-height: 24px;
+        }
+        .hrefIcon {
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          padding: 2px;
+          &:hover {
+            background: #e8e8e9;
+            border-radius: 3px;
+          }
+        }
+      }
+      .orderLabel {
+        position: absolute;
+        height: 19px;
+        cursor: pointer;
+        transition: all 0.1s;
+        z-index: 9999;
+        border-radius: 3px;
+        background-color: rgb(132, 167, 249, 0.2);
+      }
+      .orderLabelSet {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        min-width: 284px;
+        height: 56px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        // left: 100px;
+        // top: 100px;
+        font-size: 14px;
+        border: 1px solid rgb(222, 224, 227);
+        box-shadow: 0 6px 24px 0 rgba(31, 35, 41, 0.1);
+        padding: 12px;
+        color: rgb(31, 35, 41);
+        justify-content: space-between;
+        z-index: 9999;
+      }
+    }
+    // .tiptapContainer{
+    //   height: 100%;
+
+    // }
+  }
+}
+// .popverStyle {
+//   height: 40px;
+//   overflow: hidden;
+// }
+// .menuBtn {
+//   background-color: rgb(255, 255, 255);
+//   border: 1px solid black;
+//   height: 40px;
+//   box-sizing: border-box;
+//   border-radius: 6px;
+//   border: 1px solid rgb(222, 224, 227);
+//   padding: 0 5px;
+//   overflow: hidden;
+//   :global {
+//     .ant-popover-content {
+//       height: 100%;
+//       .ant-popover-inner {
+//         height: 100%;
+//         padding: 0;
+//         box-shadow: none;
+//         .ant-popover-inner-content {
+//           height: 100%;
+//           & > div {
+//             height: 100%;
+//           }
+//           .is-hover {
+//             background-color: #ebebec;
+//           }
+//           .is-active {
+//             background-color: #e7eefe;
+
+//             &:hover {
+//               background-color: #d1ddfa;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+//   button {
+//     // line-height: 40px;
+//     padding: 0px 2px;
+//     margin: 7px 3.5px;
+//     cursor: pointer;
+//     border: none;
+//     background: transparent;
+//     border-radius: 6px;
+//     &:hover {
+//       background-color: #ebebec;
+//     }
+//   }
+// }
+
+#scrollbars {
+  & > .ant-popover-inner {
+    padding: 12px 0 !important;
+  }
+}

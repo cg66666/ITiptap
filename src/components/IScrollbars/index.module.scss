@@ -1,0 +1,38 @@
+.container {
+  /*定义滚动条高宽及背景高宽分别对应横竖滚动条的尺寸*/
+  &::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 */
+  }
+  .track {
+    position: fixed;
+    // right: 0;
+    // top: 0;
+    // height: 100%;
+    width: 15px;
+    z-index: 999;
+    transition: opacity 0.3s;
+    .bar {
+      position: absolute;
+      // top: 20px;
+      // height: 40px;
+      right: 2px;
+      width: 6px;
+      background: #bbbfc4;
+      border-radius: 6px;
+      transition: width 0.2s;
+      transition: top 0;
+    }
+    &:hover {
+      .bar {
+        width: 11px;
+        background: rgba(31, 35, 41, 0.6);
+        border-radius: 6px;
+      }
+    }
+    .movingBar {
+      width: 11px;
+      background: rgba(31, 35, 41, 0.6);
+      border-radius: 6px;
+    }
+  }
+}

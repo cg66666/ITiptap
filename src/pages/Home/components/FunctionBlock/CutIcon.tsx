@@ -1,0 +1,35 @@
+/*
+ * @Description: file content
+ * @Author: cg
+ * @Date: 2025-02-17 23:11:56
+ * @LastEditors: cg
+ * @LastEditTime: 2025-03-05 15:29:42
+ */
+import React from 'react'
+
+interface IProps {
+  // Add prop types here
+  style?: React.CSSProperties
+  className?: string
+}
+
+const CutIcon: React.FC<IProps> = ({ style, className }) => {
+  return (
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      data-icon="ScreenshotsOutlined"
+      style={style}
+    >
+      <path
+        d="M3.707 4.121a1 1 0 0 1 1.414-1.414l6.95 6.95 6.95-6.95a1 1 0 1 1 1.414 1.414l-6.95 6.95 2.81 2.81a4.334 4.334 0 1 1-1.389 1.44l-2.835-2.836-2.839 2.839a4.334 4.334 0 1 1-1.388-1.44l2.813-2.813-6.95-6.95Zm4.128 13.41a2.334 2.334 0 1 0-4.668 0 2.334 2.334 0 0 0 4.668 0Zm13.136 0a2.334 2.334 0 1 0-4.668 0 2.334 2.334 0 0 0 4.668 0Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  )
+}
+
+export default CutIcon

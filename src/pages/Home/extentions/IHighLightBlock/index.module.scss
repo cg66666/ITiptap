@@ -1,0 +1,49 @@
+.outline {
+  .highLightContainer {
+    position: relative;
+    line-height: 26px;
+    margin: 8px 0;
+    padding: 16px 16px 16px 46px;
+    background-color: #fff5eb;
+    border: 1px solid #fed4a4;
+    border-radius: 4px;
+    .emoji {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 24px;
+      height: 24px;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        border-radius: 4px;
+        background: #e7ded6;
+      }
+    }
+  }
+  :global {
+    .functionSelected {
+      border: 1px solid #336df4 !important;
+      // border-radius: 0;
+      background: #e0e9ff;
+    }
+  }
+}
+.emojiContent {
+  display: flex;
+  flex-wrap: wrap;
+  & > div {
+    cursor: pointer;
+    text-align: center;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    &:hover {
+      border-radius: 50%;
+      background: #ededee;
+    }
+    font-size: 24px;
+  }
+}

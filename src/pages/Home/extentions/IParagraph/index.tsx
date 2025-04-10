@@ -1,0 +1,116 @@
+/*
+ * @Description: file content
+ * @Author: cg
+ * @Date: 2025-01-20 16:42:48
+ * @LastEditors: cg
+ * @LastEditTime: 2025-04-02 19:59:55
+ */
+import { useEffect, useRef, useState, useMemo } from 'react'
+import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
+import { nanoid } from 'nanoid'
+import IIcon from '@/components/IIcon'
+import { NodeTypeEum } from '../../index'
+import { useHeader, type headItem, useMove } from '@/store'
+import s from './index.module.scss'
+
+interface IProps {
+  node: any
+  getPos: () => number
+  updateAttributes: (attributes: Record<string, any>) => void
+}
+const IParagraph = ({ getPos, node, updateAttributes }: IProps) => {
+  const { id } = node.attrs
+
+  const { scrollTop, curSelectedIdList, curViewPortIdList } = useMove()
+
+  const { closeIList } = useHeader()
+
+  const myRef = useRef<HTMLElement>(null)
+
+  const [height, setHeight] = useState(0)
+
+  const [isOutOfViewPort, setIsOutOfViewPort] = useState(false)
+  // const isOutOfViewPort = curSelectedIdList.includes(id) ? false : !curViewPortIdList.has(id)
+  // const isFirst = useRef(true)
+  // const isOutOfViewPort = useMemo(() => {
+  //   if (isFirst.current) {
+  //     isFirst.current = false
+  //     return false
+  //   }
+  //   if (curSelectedIdList.includes(id)) return false
+  //   console.log('curViewPortIdList', curViewPortIdList)
+
+  //   return !curViewPortIdList.has(id)
+  // }, [curSelectedIdList, curViewPortIdList])
+
+  const isHidden = useMemo(() => {
+    const pos = getPos()
+    return closeIList.some(
+      (item) => item && item.start < pos && (item.end ? item.end > pos + 1 : true)
+    )
+  }, [closeIList])
+
+  useEffect(() => {
+    if (isOutOfViewPort) return
+    if (myRef.current) {
+      setTimeout(() => {
+        const curHeight = myRef.current.offsetHeight
+        if (curHeight > 0 && height != curHeight) {
+          setHeight(curHeight)
+        }
+      }, 0)
+    }
+  }, [node.textContent])
+
+  const isFirst = useRef(true)
+  const observerRef = useRef<any>()
+  useEffect(() => {
+    if (!myRef.current) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.target) return
+          if (isFirst.current) {
+            isFirst.current = false
+            setIsOutOfViewPort(false)
+          }
+          if (entry.isIntersecting) {
+            setIsOutOfViewPort(false)
+          } else {
+            setIsOutOfViewPort(true)
+          }
+        })
+      },
+      { root: document.getElementById('container'), rootMargin: '300px 0px' }
+    )
+    if (!isHidden) {
+      observer.observe(myRef.current)
+    } else {
+      observerRef.current.disconnect(myRef.current)
+    }
+    // 将 observer 存储到 observerRef 中
+    observerRef.current = observer
+  }, [isHidden])
+
+  return (
+    <>
+      {!isHidden && (
+        <NodeViewWrapper
+          id={id + '-IParagraph'}
+          data-id={id}
+          ref={myRef}
+          data-type={NodeTypeEum.Paragraph}
+          className="nodeContainer"
+        >
+          {isOutOfViewPort ? (
+            <div style={{ height }}></div>
+          ) : (
+            <NodeViewContent data-id={id} data-type={NodeTypeEum.Paragraph} />
+          )}
+        </NodeViewWrapper>
+      )}
+    </>
+  )
+}
+
+export default IParagraph

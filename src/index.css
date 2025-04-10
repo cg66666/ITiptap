@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'consola';
+  src: url('consola.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /* 修改选中文本的背景色 */
+  ::selection {
+    background-color: #aec5fa; /* 选择你喜欢的颜色 */
+  }
+
+  /* 针对不同浏览器的兼容性处理 */
+  ::-moz-selection {
+    background-color: #aec5fa;
+  }
+}
+
+/* tiptap容器配置 */
+#tiptap {
+  outline: none;
+  width: 720px;
+  padding: 12px 10px 60px calc((100vw - 750px) / 2);
+}
+#tiptap .tiptap {
+  outline: none;
+}
+
+/* iconfont配置 */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/* antd相关配置 */
+.ant-tooltip {
+  z-index: 9999 !important;
+}
+.ant-dropdown-menu {
+  padding: 16px !important;
+  min-width: 190px !important;
+}
+.ant-dropdown-menu li {
+  padding: 6px 16px !important;
+}
+
+/* 任务列表悬浮 */
+.taskSelected {
+  background-color: rgba(31, 35, 41, 0.1);
+  border-radius: 4px;
+}
+
+/* 功能块悬浮 */
+.functionSelected {
+  background: #e0e9ff;
+  border-radius: 4px;
+}
+
+/* 超链接样式 */
+.ILink {
+  color: #336df4;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* 滚动目的地头部临时样式 */
+.scrollHeaderTempShow {
+  background: #e0e9ff;
+  border-radius: 4px;
+}
+
+/* 评论悬浮时，目的地样式 */
+.hoverComment {
+  background: #faedc2;
+}

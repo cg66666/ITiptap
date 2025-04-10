@@ -1,0 +1,20 @@
+.olContainer {
+  .olContent {
+    // display: flex;
+    width: 100%;
+    position: relative;
+    &::before {
+      font-family: 'consola';
+      // display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      // letter-spacing: var(--border-right-style);
+      min-width: 18px;
+      content: attr(data-num) '.';
+      color: rgb(51, 109, 244);
+      margin-right: 5px;
+      padding-left: 2px;
+    }
+  }
+}

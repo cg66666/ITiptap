@@ -1,0 +1,147 @@
+.container {
+  transition: all 0.2s;
+  display: flex;
+  position: absolute;
+  padding: 0 6px;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border: 1px solid rgb(222, 224, 227);
+  z-index: 999;
+  button {
+    margin: 8px 3.5px;
+    min-width: 24px;
+    text-align: center;
+    line-height: 24px;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background-color: #ebebec;
+    }
+  }
+  .verticalLine {
+    width: 2px;
+    height: 16px;
+    background: #dee0e3;
+    margin: 11.1px 8px;
+  }
+  :global {
+    .is-active {
+      background-color: #e7eefe;
+      &:hover {
+        background-color: #d1ddfa;
+      }
+    }
+  }
+}
+.menuBtn {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid rgb(222, 224, 227);
+  padding: 0 5px;
+  overflow: hidden;
+  :global {
+    .ant-popover-content {
+      height: 100%;
+      .ant-popover-inner {
+        height: 100%;
+        padding: 0;
+        box-shadow: none;
+        .ant-popover-inner-content {
+          height: 100%;
+          & > div {
+            height: 100%;
+          }
+          .is-hover {
+            background-color: #ebebec;
+          }
+          .is-active {
+            background-color: #e7eefe;
+            &:hover {
+              background-color: #d1ddfa;
+            }
+          }
+        }
+      }
+    }
+  }
+  button {
+    // line-height: 40px;
+    padding: 0px 2px;
+    margin: 7px 3.5px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    &:hover {
+      background-color: #ebebec;
+    }
+  }
+  .disabled {
+    cursor: not-allowed;
+  }
+}
+
+.fontStyleContent {
+  width: 220px;
+  // height: 194px;
+  padding: 4px 10px 12px;
+  overflow: hidden;
+  .label {
+    color: #1f2329;
+    font-size: 12px;
+  }
+  .colorContent {
+    margin: 7px 0 12px;
+    flex-wrap: wrap;
+    display: flex;
+    & > div {
+      position: relative;
+      cursor: pointer;
+      margin: 0 5.1px 5px 0;
+      width: 16px;
+      height: 16px;
+      padding: 1px;
+      border: 1px solid #d0d3d6;
+      border-radius: 2px;
+      // line-height: 10px;
+      // text-align: center;
+      svg {
+        left: -1px;
+        top: -1px;
+        position: relative;
+        width: 19px;
+        height: 19px;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: 26.5px;
+        height: 26.5px;
+        // border: 1px solid #c2d4ff;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        left: -4.15px;
+        top: -4.2px;
+        box-sizing: border-box;
+      }
+      &:hover {
+        &::before {
+          border-color: #c2d4ff;
+        }
+      }
+    }
+    .activeItem {
+      &::before {
+        border-color: #c2d4ff;
+      }
+    }
+  }
+}

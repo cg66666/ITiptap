@@ -1,0 +1,52 @@
+.ulContainer {
+  .ulContent {
+    // display: flex;
+    width: 100%;
+    position: relative;
+  }
+  .icon1 {
+    &::before {
+      content: '\2022';
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      color: rgb(51, 109, 244);
+      transform: scale(1.25);
+      text-align: center;
+      font-size: 0.8em;
+      width: 18px;
+      line-height: 26.4px;
+    }
+  }
+  .icon2 {
+    &::before {
+      content: '\25E6';
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      color: rgb(51, 109, 244);
+      transform: scale(1.25);
+      text-align: center;
+      font-size: 0.8em;
+      width: 18px;
+      line-height: 26.4px;
+    }
+  }
+  .icon3 {
+    &::before {
+      content: '\25AA';
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      color: rgb(51, 109, 244);
+      transform: scale(1.25);
+      text-align: center;
+      font-size: 0.8em;
+      width: 18px;
+      line-height: 26.4px;
+    }
+  }
+}
