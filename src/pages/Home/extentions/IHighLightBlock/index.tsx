@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2025-01-20 16:42:48
  * @LastEditors: cg
- * @LastEditTime: 2025-04-09 13:25:28
+ * @LastEditTime: 2025-04-10 22:14:16
  */
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
@@ -85,15 +85,11 @@ interface IProps {
 const IHighLightBlock = ({ getPos, node, updateAttributes }: IProps) => {
   const { id, alignClass, emoji } = node.attrs
 
-  const { scrollTop, curSelectedIdList, curViewPortIdList } = useMove()
-
   const { closeIList } = useHeader()
 
   const myRef = useRef<HTMLElement>(null)
 
   const [height, setHeight] = useState(0)
-
-  const [curEmoji, setCurEmoji] = useState(emoji)
 
   const [popOpen, setPopOpen] = useState(false)
 
@@ -132,7 +128,8 @@ const IHighLightBlock = ({ getPos, node, updateAttributes }: IProps) => {
               key={index}
               onClick={() => {
                 setPopOpen(false)
-                setCurEmoji(emoji)
+                // setCurEmoji(emoji)
+                updateAttributes({ emoji })
               }}
             >
               <span>{emoji}</span>
@@ -210,7 +207,7 @@ const IHighLightBlock = ({ getPos, node, updateAttributes }: IProps) => {
               >
                 <Tooltip title="点击更换图标">
                   <div className={s.emoji} onClick={() => setPopOpen(!popOpen)}>
-                    {curEmoji}
+                    {emoji}
                   </div>
                 </Tooltip>
               </Popover>

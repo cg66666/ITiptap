@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2024-11-20 16:16:46
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 16:14:24
+ * @LastEditTime: 2025-04-10 21:48:50
  */
 import { create } from 'zustand'
 import { notification } from 'antd'
@@ -19,6 +19,8 @@ interface IState {
   toLogin: () => void
   checkLogin: () => void
   toLogOut: () => void
+  userConfig: any
+  setUserConfig: (val: any) => void
 }
 
 export const useLogin = create<IState>((set, get) => ({
@@ -42,7 +44,7 @@ export const useLogin = create<IState>((set, get) => ({
   checkLogin: async () => {
     const { toLogin } = get()
     const query = getQueryParams()
-    const SToken = getCookie('T-TOKEN')
+    const TToken = getCookie('T-TOKEN')
     // 判断是否ticket第一次登录后进入页面
     if (query.ticket) {
       try {
@@ -60,7 +62,7 @@ export const useLogin = create<IState>((set, get) => ({
       } catch (err) {
         console.log('err', err)
       }
-    } else if (SToken) {
+    } else if (TToken) {
       const res = await Get<{ ok: boolean }>('/tiptap/checkToken')
       if (res.successful && res.data.ok) {
         const res = await Get<{ name: string; config: any }>('/tiptap/getUserInfo')
@@ -84,5 +86,9 @@ export const useLogin = create<IState>((set, get) => ({
       set({ userName: '' })
       notification.info({ message: '退出成功！' })
     }
+  },
+  userConfig: null,
+  setUserConfig: (val) => {
+    set({ userConfig: val })
   }
 }))

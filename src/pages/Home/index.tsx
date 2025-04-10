@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2025-02-27 09:54:28
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 16:15:39
+ * @LastEditTime: 2025-04-10 21:56:20
  */
 // src/Tiptap.jsx
 import React, { useEffect, useRef, useState } from 'react'
@@ -67,7 +67,8 @@ import {
   removeMark,
   setQuote,
   initCursor,
-  setCursor
+  setCursor,
+  getCookie
 } from '@/utils'
 import { createCursorPlugin, cursorPluginKey } from './Plugins/CursorPlugin'
 import { useWebSocket } from '@/hook/useWebSocket'
@@ -196,7 +197,7 @@ export enum TypeEnum {
 const Tiptap = () => {
   const settingOrderLabel = useRef(false)
   // editor.commands.scrollIntoView();
-  const { userName, userColor, documentTitle } = useLogin()
+  const { userName, userColor, documentTitle, setUserConfig } = useLogin()
 
   const {
     curHeaderId,
@@ -544,7 +545,7 @@ const Tiptap = () => {
 
   const editor = useEditor({
     extensions,
-    content,
+    // content,
     editorProps: {
       attributes: {
         spellcheck: 'false' // 禁用拼写检查
@@ -581,9 +582,12 @@ const Tiptap = () => {
     onBeforeCreate: async ({ editor }) => {
       // 在视图创建之前。
       document.title = '未命名文档 - cg文档'
-      const res = await get('/tiptap/getData')
-      if (res.successful) {
-        editor.commands.setContent(res.data)
+      const TToken = getCookie('T-TOKEN')
+      if (TToken) {
+        const res = await get('/tiptap/getData')
+        if (res.successful) {
+          editor.commands.setContent(res.data)
+        }
       }
     },
     onCreate({ editor }) {
@@ -1616,7 +1620,8 @@ const Tiptap = () => {
         clearTimeout(updateUserTimer.current)
         if (!backMsg.stopUpdate) {
           updateUserTimer.current = setTimeout(() => {
-            console.log('updateUser', backMsg)
+            // console.log('updateUser', backMsg)
+            setUserConfig(backMsg.tiptapUserList)
             editor.view.dispatch(
               editor.state.tr.setMeta(cursorPluginKey, {
                 cursors: backMsg.tiptapUserList,

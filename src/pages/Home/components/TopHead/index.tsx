@@ -10,15 +10,23 @@ interface IProps {
 }
 
 const TopHead: React.FC<IProps> = ({ loading }) => {
-  const { userName, userColor, toLogOut, documentTitle } = useLogin()
+  const { userName, toLogin, toLogOut, documentTitle, userConfig } = useLogin()
 
-  const [updaeTime, setUpdateTime] = useState()
+  const userList = userConfig
+    ? Object.values(userConfig).filter((item: any) => item && item.name != userName)
+    : []
 
   return userName ? (
     <div className={s.container}>
       <div className={s.left}>
         <Tooltip title="退出登录">
-          <div className={s.backBtn}>
+          <div
+            className={s.backBtn}
+            onClick={async () => {
+              await toLogOut()
+              toLogin()
+            }}
+          >
             <Back />
           </div>
         </Tooltip>
@@ -27,7 +35,15 @@ const TopHead: React.FC<IProps> = ({ loading }) => {
           <div className={s.updateTime}>{loading ? '更新中……' : '已保存到云端'}</div>
         </div>
       </div>
-      <div className={s.right}></div>
+      <div className={s.right}>
+        {userList.map((item: any) => (
+          <div className={s.avatar} key={item.name} style={{ background: item.colorConfig.color }}>
+            {item.name}
+          </div>
+        ))}
+        <div className={s.line} />
+        <div className={s.avatar}>{userName}</div>
+      </div>
     </div>
   ) : (
     <></>
