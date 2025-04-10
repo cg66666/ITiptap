@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2024-11-20 16:16:46
  * @LastEditors: cg
- * @LastEditTime: 2025-04-08 18:04:01
+ * @LastEditTime: 2025-04-10 16:14:24
  */
 import { create } from 'zustand'
 import { notification } from 'antd'
@@ -46,7 +46,7 @@ export const useLogin = create<IState>((set, get) => ({
     // 判断是否ticket第一次登录后进入页面
     if (query.ticket) {
       try {
-        const res = await post('/getToken', { ticket: query.ticket })
+        const res = await post('/tiptap/getToken', { ticket: query.ticket })
         if (res.successful) {
           // 获取当前 URL
           const currentUrl = new URL(window.location.href)
@@ -61,9 +61,9 @@ export const useLogin = create<IState>((set, get) => ({
         console.log('err', err)
       }
     } else if (SToken) {
-      const res = await Get<{ ok: boolean }>('/checkToken')
+      const res = await Get<{ ok: boolean }>('/tiptap/checkToken')
       if (res.successful && res.data.ok) {
-        const res = await Get<{ name: string; config: any }>('/getUserInfo')
+        const res = await Get<{ name: string; config: any }>('/tiptap/getUserInfo')
         if (res.successful) {
           const colorConfig = generateColorFromString(res.data.name)
           set({ userName: res.data.name, userColor: colorConfig, config: res.data.config })
@@ -77,7 +77,7 @@ export const useLogin = create<IState>((set, get) => ({
   },
   // 退出登录
   toLogOut: async () => {
-    const res = await Get('/logout')
+    const res = await Get('/tiptap/logout')
     if (res.successful) {
       // 清除cookie
       // document.cookie = 'S-TOKEN' + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';

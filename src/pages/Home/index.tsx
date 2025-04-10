@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2025-02-27 09:54:28
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 10:30:46
+ * @LastEditTime: 2025-04-10 16:15:39
  */
 // src/Tiptap.jsx
 import React, { useEffect, useRef, useState } from 'react'
@@ -413,7 +413,7 @@ const Tiptap = () => {
       return
     } else {
       // console.log('json', editor.getJSON())
-      post('/saveData', { data: editor.getJSON() }).then(() => setIsSaving(false))
+      post('/tiptap/saveData', { data: editor.getJSON() }).then(() => setIsSaving(false))
       sendMessage({
         type: 'transaction',
         steps: wsStepList.current,
@@ -581,10 +581,10 @@ const Tiptap = () => {
     onBeforeCreate: async ({ editor }) => {
       // 在视图创建之前。
       document.title = '未命名文档 - cg文档'
-      // const res = await get('/getData')
-      // if (res.successful) {
-      //   editor.commands.setContent(res.data)
-      // }
+      const res = await get('/tiptap/getData')
+      if (res.successful) {
+        editor.commands.setContent(res.data)
+      }
     },
     onCreate({ editor }) {
       // 编辑器已准备好。
