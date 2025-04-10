@@ -6,7 +6,7 @@
  * @LastEditTime: 2025-04-10 10:25:26
  */
 // 设置评论
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import { useEditor, type Editor, type Node } from '@tiptap/react'
 
 export const deleteComment = (editor: Editor, id: string) => {
@@ -29,7 +29,7 @@ export const deleteComment = (editor: Editor, id: string) => {
       let { type } = pDom.dataset
       // console.log('id', id)
       // console.log('type', type)
-      if (type === NodeTypeEum.OrderListContent) type = NodeTypeEum.OrderList
+      if (type === TypeEnum.OrderListContent) type = TypeEnum.OrderList
       return { id, type }
     })
     // let from = 0

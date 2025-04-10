@@ -8,7 +8,7 @@
 import { type Editor } from '@tiptap/react'
 import { updateAtribute } from './updateAtribute'
 import { convertNode } from './convertNode'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import { setNodeOnOrderList } from './setNodeOnOrderList'
 
 export const setTask = (editor: Editor, attributes: any) => {
@@ -29,12 +29,12 @@ export const setTask = (editor: Editor, attributes: any) => {
     // 遍历从from到to之间的所有节点
     state.doc.nodesBetween(from, to, (node, pos) => {
       if (node.isBlock || (node.isInline && !node.isText)) {
-        if (node.type.name === NodeTypeEum.Task) {
+        if (node.type.name === TypeEnum.Task) {
           taskList.push({ node, pos })
         } else {
           otherList.push({ node, pos })
         }
-        if (node.type.name === NodeTypeEum.OrderList) {
+        if (node.type.name === TypeEnum.OrderList) {
           orderList.push({ node, pos })
           if (
             levelConfig[node.attrs.tier] &&

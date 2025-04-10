@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo, useCallback, memo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove, type headd, useLogin } from '@/store'
 import { Tooltip } from 'antd'
 import _ from 'lodash'
@@ -126,7 +126,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
         <div
           className={`${s.arrow} ${isClose ? s.closeArrow : ''}`}
           style={{ opacity: showIcon || isClose ? 1 : 0 }}
-          data-type={NodeTypeEum.HeaderIcon}
+          data-type={TypeEnum.HeaderIcon}
           data-id={id}
           onClick={toggleClose}
         >
@@ -147,7 +147,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
             <IconSlot>
               <IIcon
                 name="icon-arrow"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 size="24"
                 hoverColor="#336df4"
@@ -157,7 +157,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               className={placeholder && !text ? 'placeholder' : ''}
               data-placeholder={placeholder}
             >
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} data-istop={isTop} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} data-istop={isTop} />
             </div>
           </div>
         )
@@ -168,14 +168,14 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
             <IconSlot>
               <IIcon
                 name="icon-arrow"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 size="22"
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -186,14 +186,14 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
             <IconSlot>
               <IIcon
                 name="icon-arrow"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 size="22"
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -205,13 +205,13 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -223,13 +223,13 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -241,13 +241,13 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -259,13 +259,13 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -277,13 +277,13 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
             </IconSlot>
             <div>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Header} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Header} />
             </div>
           </div>
         )
@@ -295,7 +295,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <IIcon
                 name="icon-arrow"
                 size="22"
-                data-type={NodeTypeEum.HeaderIcon}
+                data-type={TypeEnum.HeaderIcon}
                 data-id={id}
                 hoverColor="#336df4"
               />
@@ -304,7 +304,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
               <NodeViewContent
                 style={{ lineHeight: 1.65 }}
                 data-id={id}
-                data-type={NodeTypeEum.Header}
+                data-type={TypeEnum.Header}
               />
             </div>
           </div>
@@ -341,7 +341,7 @@ const IHeader = ({ editor, node, getPos, updateAttributes }: IProps) => {
           data-level={level}
           data-id={id}
           data-node="true"
-          data-type={NodeTypeEum.Header}
+          data-type={TypeEnum.Header}
           data-istop={isTop}
           ref={myRef}
           className={`${s.container} ${alignClass} nodeContainer`}

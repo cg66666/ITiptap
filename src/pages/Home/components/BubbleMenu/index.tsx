@@ -21,7 +21,7 @@ import {
   setHightLightBlock
 } from '@/utils'
 import { Tooltip, Popover } from 'antd'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import { useMove, useComment } from '@/store'
 import CommendIcon from './CommendIcon'
 import FontStyle from './FontStyle'
@@ -93,7 +93,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 4)}
-              className={curType[NodeTypeEum.Header] == 4 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 4 ? 'is-active' : ''}
             >
               <IIcon name="icon-h4" />
             </button>
@@ -110,7 +110,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 5)}
-              className={curType[NodeTypeEum.Header] == 5 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 5 ? 'is-active' : ''}
             >
               <IIcon name="icon-h5" />
             </button>
@@ -127,7 +127,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 6)}
-              className={curType[NodeTypeEum.Header] == 6 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 6 ? 'is-active' : ''}
             >
               <IIcon name="icon-h6" />
             </button>
@@ -144,7 +144,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 7)}
-              className={curType[NodeTypeEum.Header] == 7 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 7 ? 'is-active' : ''}
             >
               <IIcon name="icon-h7" />
             </button>
@@ -161,7 +161,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 8)}
-              className={curType[NodeTypeEum.Header] == 8 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 8 ? 'is-active' : ''}
             >
               <IIcon name="icon-h8" />
             </button>
@@ -178,7 +178,7 @@ const BubbleMenu: React.FC<IProps> = ({
           >
             <button
               onClick={() => setHeader(editor, 9)}
-              className={curType[NodeTypeEum.Header] == 9 ? 'is-active' : ''}
+              className={curType[TypeEnum.Header] == 9 ? 'is-active' : ''}
             >
               <IIcon name="icon-h9" />
             </button>
@@ -222,7 +222,7 @@ const BubbleMenu: React.FC<IProps> = ({
                 editor.commands.toggleColor({ color })
                 setConfig()
               }}
-              className={curType[NodeTypeEum.Color].includes(color) ? s.activeItem : ''}
+              className={curType[TypeEnum.Color].includes(color) ? s.activeItem : ''}
             >
               <FontStyle style={{ color }} />
             </div>
@@ -238,7 +238,7 @@ const BubbleMenu: React.FC<IProps> = ({
                 editor.commands.toggleHighlight({ color })
                 setConfig()
               }}
-              className={curType[NodeTypeEum.HighLight].includes(color) ? s.activeItem : ''}
+              className={curType[TypeEnum.HighLight].includes(color) ? s.activeItem : ''}
             >
               <FontStyle />
             </div>
@@ -262,10 +262,10 @@ const BubbleMenu: React.FC<IProps> = ({
     if (!position) return
     const { state } = editor
     const obj: Record<string, any> = {
-      [NodeTypeEum.Header]: 0,
-      [NodeTypeEum.Color]: [],
-      [NodeTypeEum.HighLight]: [],
-      [NodeTypeEum.Align]: []
+      [TypeEnum.Header]: 0,
+      [TypeEnum.Color]: [],
+      [TypeEnum.HighLight]: [],
+      [TypeEnum.Align]: []
     }
     // 获取从from到to范围内包含的所有节点
     state.doc.nodesBetween(position.from, position.to, (node, pos) => {
@@ -276,14 +276,14 @@ const BubbleMenu: React.FC<IProps> = ({
       if (node.isBlock) {
         idObj[node.attrs.id] = { pos: pos }
         // 头部节点需要特殊处理
-        if (node.type.name == NodeTypeEum.Header) {
-          obj[NodeTypeEum.Header] = node.attrs.level
+        if (node.type.name == TypeEnum.Header) {
+          obj[TypeEnum.Header] = node.attrs.level
         } else {
           obj[node.type.name] = []
         }
         // 存储对齐配置
-        if (node.attrs[NodeTypeEum.Align]) {
-          obj[NodeTypeEum.Align] = [node.attrs[NodeTypeEum.Align]]
+        if (node.attrs[TypeEnum.Align]) {
+          obj[TypeEnum.Align] = [node.attrs[TypeEnum.Align]]
         }
       }
       // 检查当前节点的标记
@@ -291,8 +291,8 @@ const BubbleMenu: React.FC<IProps> = ({
         node.marks.forEach((mark) => {
           switch (mark.type.name) {
             // 针对颜色的特殊处理
-            case NodeTypeEum.Color:
-            case NodeTypeEum.HighLight: {
+            case TypeEnum.Color:
+            case TypeEnum.HighLight: {
               const color = mark.attrs.color
               if (obj[mark.type.name] && !obj[mark.type.name].includes(color)) {
                 obj[mark.type.name].push(color)
@@ -365,7 +365,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => setHeader(editor, 1)}
-          className={curType[NodeTypeEum.Header] == 1 ? 'is-active' : ''}
+          className={curType[TypeEnum.Header] == 1 ? 'is-active' : ''}
         >
           <IIcon name="icon-h1" />
         </button>
@@ -382,7 +382,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => setHeader(editor, 2)}
-          className={curType[NodeTypeEum.Header] == 2 ? 'is-active' : ''}
+          className={curType[TypeEnum.Header] == 2 ? 'is-active' : ''}
         >
           <IIcon name="icon-h2" />
         </button>
@@ -399,7 +399,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => setHeader(editor, 3)}
-          className={curType[NodeTypeEum.Header] == 3 ? 'is-active' : ''}
+          className={curType[TypeEnum.Header] == 3 ? 'is-active' : ''}
         >
           <IIcon name="icon-h3" />
         </button>
@@ -445,7 +445,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={curType[NodeTypeEum.Bold] ? 'is-active' : ''}
+          className={curType[TypeEnum.Bold] ? 'is-active' : ''}
         >
           <IIcon name="icon-bold" />
         </button>
@@ -462,7 +462,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={curType[NodeTypeEum.Strike] ? 'is-active' : ''}
+          className={curType[TypeEnum.Strike] ? 'is-active' : ''}
         >
           <IIcon name="icon-strickout" />
         </button>
@@ -491,7 +491,7 @@ const BubbleMenu: React.FC<IProps> = ({
       >
         <button
           onClick={() => setOrderList(editor)}
-          className={curType[NodeTypeEum.OrderList] ? 'is-active' : ''}
+          className={curType[TypeEnum.OrderList] ? 'is-active' : ''}
         >
           <IIcon name="icon-orderList" />
         </button>
@@ -509,7 +509,7 @@ const BubbleMenu: React.FC<IProps> = ({
         <button
           // onClick={() => editor.chain().focus().toggleBulletList().run()}
           onClick={() => setBulletList(editor, { tier: 1 })}
-          className={curType[NodeTypeEum.BulleList] ? 'is-active' : ''}
+          className={curType[TypeEnum.BulleList] ? 'is-active' : ''}
         >
           <IIcon name="icon-list" />
         </button>
@@ -527,7 +527,7 @@ const BubbleMenu: React.FC<IProps> = ({
         <button
           onClick={() => setTask(editor, { isChecked: false, tier: 1 })}
           // onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={curType[NodeTypeEum.Task] ? 'is-active' : ''}
+          className={curType[TypeEnum.Task] ? 'is-active' : ''}
         >
           <IIcon name="icon-taskList" />
         </button>
@@ -539,7 +539,7 @@ const BubbleMenu: React.FC<IProps> = ({
             editor.commands.setDefaultSelection({ color: '#dee0e3' })
             setShowLinkInput(true)
           }}
-          className={curType[NodeTypeEum.Link] ? 'is-active' : ''}
+          className={curType[TypeEnum.Link] ? 'is-active' : ''}
         >
           <IIcon name="icon-link" />
         </button>
@@ -560,7 +560,7 @@ const BubbleMenu: React.FC<IProps> = ({
             >
               <button
                 onClick={() => setQuote(editor, {})}
-                className={curType[NodeTypeEum.Blockquote] ? 'is-active' : ''}
+                className={curType[TypeEnum.Blockquote] ? 'is-active' : ''}
               >
                 <IIcon name="icon-quote" size="17" style={{ position: 'relative', top: -1.5 }} />
               </button>
@@ -580,7 +580,7 @@ const BubbleMenu: React.FC<IProps> = ({
                   editor.chain().focus().toggleUnderline().run()
                   setConfig()
                 }}
-                className={curType[NodeTypeEum.Underline] ? 'is-active' : ''}
+                className={curType[TypeEnum.Underline] ? 'is-active' : ''}
               >
                 <IIcon name="icon-underline" size="19" />
               </button>
@@ -600,7 +600,7 @@ const BubbleMenu: React.FC<IProps> = ({
                   editor.chain().focus().toggleItalic().run()
                   setConfig()
                 }}
-                className={curType[NodeTypeEum.Italic] ? 'is-active' : ''}
+                className={curType[TypeEnum.Italic] ? 'is-active' : ''}
               >
                 <IIcon name="icon-italic" size="23" style={{ position: 'relative', top: 1.5 }} />
               </button>
@@ -620,7 +620,7 @@ const BubbleMenu: React.FC<IProps> = ({
                   editor.chain().focus().toggleCode().run()
                   setConfig()
                 }}
-                className={curType[NodeTypeEum.Code] ? 'is-active' : ''}
+                className={curType[TypeEnum.Code] ? 'is-active' : ''}
               >
                 <IIcon name="icon-code" size="23" style={{ position: 'relative', top: 1.5 }} />
               </button>
@@ -628,7 +628,7 @@ const BubbleMenu: React.FC<IProps> = ({
             <Tooltip title={<div style={{ textAlign: 'center' }}>高亮块</div>} color="#1f2329">
               <button
                 onClick={() => setHightLightBlock(editor, {})}
-                className={curType[NodeTypeEum.HighLightBlock] ? 'is-active' : ''}
+                className={curType[TypeEnum.HighLightBlock] ? 'is-active' : ''}
               >
                 <IIcon
                   name="icon-highLight"
@@ -649,7 +649,7 @@ const BubbleMenu: React.FC<IProps> = ({
             >
               <button
                 onClick={() => setCodeBlock(editor, {})}
-                className={curType[NodeTypeEum.CodeBlock] ? 'is-active' : ''}
+                className={curType[TypeEnum.CodeBlock] ? 'is-active' : ''}
               >
                 <IIcon name="icon-codeBlock" size="21" style={{ position: 'relative', top: 0.5 }} />
               </button>
@@ -660,16 +660,16 @@ const BubbleMenu: React.FC<IProps> = ({
             >
               <button
                 onClick={() => {
-                  if (curType[NodeTypeEum.CodeBlock]) return
+                  if (curType[TypeEnum.CodeBlock]) return
                   Object.keys(idObj).forEach((name) => {
                     idObj[name] = { alignClass: 'align-left' }
                   })
                   updateAtribute(editor, idObj)
                   setConfig()
                 }}
-                className={`${
-                  curType[NodeTypeEum.Align].includes('align-left') ? 'is-active' : ''
-                } ${curType[NodeTypeEum.CodeBlock] ? s.disabled : ''}`}
+                className={`${curType[TypeEnum.Align].includes('align-left') ? 'is-active' : ''} ${
+                  curType[TypeEnum.CodeBlock] ? s.disabled : ''
+                }`}
               >
                 <IIcon name="icon-leftAlign" size="20" />
               </button>
@@ -680,7 +680,7 @@ const BubbleMenu: React.FC<IProps> = ({
             >
               <button
                 onClick={() => {
-                  if (curType[NodeTypeEum.CodeBlock]) return
+                  if (curType[TypeEnum.CodeBlock]) return
                   Object.keys(idObj).forEach((name) => {
                     idObj[name] = { alignClass: 'align-center' }
                   })
@@ -688,8 +688,8 @@ const BubbleMenu: React.FC<IProps> = ({
                   setConfig()
                 }}
                 className={`${
-                  curType[NodeTypeEum.Align].includes('align-center') ? 'is-active' : ''
-                } ${curType[NodeTypeEum.CodeBlock] ? s.disabled : ''}`}
+                  curType[TypeEnum.Align].includes('align-center') ? 'is-active' : ''
+                } ${curType[TypeEnum.CodeBlock] ? s.disabled : ''}`}
               >
                 <IIcon name="icon-middleAlign" size="20" />
               </button>
@@ -700,16 +700,16 @@ const BubbleMenu: React.FC<IProps> = ({
             >
               <button
                 onClick={() => {
-                  if (curType[NodeTypeEum.CodeBlock]) return
+                  if (curType[TypeEnum.CodeBlock]) return
                   Object.keys(idObj).forEach((name) => {
                     idObj[name] = { alignClass: 'align-right' }
                   })
                   updateAtribute(editor, idObj)
                   setConfig()
                 }}
-                className={`${
-                  curType[NodeTypeEum.Align].includes('align-right') ? 'is-active' : ''
-                } ${curType[NodeTypeEum.CodeBlock] ? s.disabled : ''}`}
+                className={`${curType[TypeEnum.Align].includes('align-right') ? 'is-active' : ''} ${
+                  curType[TypeEnum.CodeBlock] ? s.disabled : ''
+                }`}
               >
                 <IIcon name="icon-rightAlign" size="20" />
               </button>

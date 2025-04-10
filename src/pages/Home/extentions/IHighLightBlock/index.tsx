@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { Tooltip, Popover } from 'antd'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, useMove } from '@/store'
 import s from './index.module.scss'
 import Scrollbars from 'react-custom-scrollbars'
@@ -193,7 +193,7 @@ const IHighLightBlock = ({ getPos, node, updateAttributes }: IProps) => {
           id={id + '-IHighLightBlock'}
           data-id={id}
           ref={myRef}
-          data-type={NodeTypeEum.HighLightBlock}
+          data-type={TypeEnum.HighLightBlock}
         >
           {isOutOfViewPort ? (
             <div style={{ height }}></div>
@@ -214,7 +214,7 @@ const IHighLightBlock = ({ getPos, node, updateAttributes }: IProps) => {
                   </div>
                 </Tooltip>
               </Popover>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.HighLightBlock} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.HighLightBlock} />
             </div>
           )}
         </NodeViewWrapper>

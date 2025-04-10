@@ -3,12 +3,11 @@
  * @Author: cg
  * @Date: 2025-03-09 17:51:36
  * @LastEditors: cg
- * @LastEditTime: 2025-04-07 18:09:29
+ * @LastEditTime: 2025-04-10 10:28:01
  */
 import React, { useRef, useState } from 'react'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import IScrollbars from '@/components/IScrollbars'
-import { type Scrollbars } from 'react-custom-scrollbars'
 import { useHeader } from '@/store'
 import s from './index.module.scss'
 

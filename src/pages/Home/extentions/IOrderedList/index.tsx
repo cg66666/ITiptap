@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import s from './index.module.scss'
 
@@ -197,7 +197,7 @@ const IOrderedList = ({ updateAttributes, editor, node, getPos }: IProps) => {
           className={`${s.olContainer} nodeContainer`}
           data-start={start}
           data-num={dataNum}
-          data-type={NodeTypeEum.OrderList}
+          data-type={TypeEnum.OrderList}
           ref={myRef}
         >
           {isOutOfViewPort ? (
@@ -207,7 +207,7 @@ const IOrderedList = ({ updateAttributes, editor, node, getPos }: IProps) => {
               className={s.olContent}
               data-start={start}
               data-num={dataNum}
-              data-type={NodeTypeEum.OrderListContent}
+              data-type={TypeEnum.OrderListContent}
               data-id={id}
               style={{
                 paddingLeft: `${22 + 8 * (String(dataNum).length - 1)}px`,

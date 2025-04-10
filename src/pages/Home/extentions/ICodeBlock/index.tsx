@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import { Select, Divider, Input, Tooltip } from 'antd'
 import LanguageArrow from './LanguageArrow'
@@ -175,7 +175,7 @@ const CodeBlockLowlight = ({ getPos, node, updateAttributes, lowlight }: IProps)
           id={id + '-ICodeBlock'}
           data-id={id}
           ref={myRef}
-          data-type={NodeTypeEum.CodeBlock}
+          data-type={TypeEnum.CodeBlock}
           data-language={language}
           className={`${s.outline} nodeContainer`}
         >

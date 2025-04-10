@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import s from './index.module.scss'
 
@@ -99,13 +99,13 @@ const IParagraph = ({ getPos, node, updateAttributes }: IProps) => {
           id={id + '-IParagraph'}
           data-id={id}
           ref={myRef}
-          data-type={NodeTypeEum.Paragraph}
+          data-type={TypeEnum.Paragraph}
           className="nodeContainer"
         >
           {isOutOfViewPort ? (
             <div style={{ height }}></div>
           ) : (
-            <NodeViewContent data-id={id} data-type={NodeTypeEum.Paragraph} />
+            <NodeViewContent data-id={id} data-type={TypeEnum.Paragraph} />
           )}
         </NodeViewWrapper>
       )}

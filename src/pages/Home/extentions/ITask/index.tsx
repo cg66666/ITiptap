@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { Tooltip, DatePicker, message } from 'antd'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import AddPeople from './AddPeople'
 import AddTime from './AddTime'
@@ -214,7 +214,7 @@ const ITask = ({ getPos, node, updateAttributes }: IProps) => {
           data-id={id}
           ref={myRef}
           data-ischeckedbody={true}
-          data-type={NodeTypeEum.Task}
+          data-type={TypeEnum.Task}
           data-ischecked={isChecked}
           // data-tier={tier}
           style={{ position: 'relative', display: 'flex' }}
@@ -228,7 +228,7 @@ const ITask = ({ getPos, node, updateAttributes }: IProps) => {
               // style={{ paddingLeft: '28px', width: '100%', display: 'flex' }}
             >
               <NodeViewContent
-                data-type={NodeTypeEum.Task}
+                data-type={TypeEnum.Task}
                 data-ischecked={isChecked}
                 data-id={id}
                 // data-tier={tier}

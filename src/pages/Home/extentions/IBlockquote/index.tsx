@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import s from './index.module.scss'
 
@@ -101,14 +101,14 @@ const IBlockquote = ({ getPos, node, updateAttributes }: IProps) => {
           id={id + '-IBlockquote'}
           data-id={id}
           ref={myRef}
-          data-type={NodeTypeEum.Blockquote}
+          data-type={TypeEnum.Blockquote}
           className={`${alignClass} nodeContainer`}
         >
           {isOutOfViewPort ? (
             <div style={{ height }}></div>
           ) : (
             <div className={s.quoteContainer}>
-              <NodeViewContent data-id={id} data-type={NodeTypeEum.Blockquote} />
+              <NodeViewContent data-id={id} data-type={TypeEnum.Blockquote} />
             </div>
           )}
         </NodeViewWrapper>

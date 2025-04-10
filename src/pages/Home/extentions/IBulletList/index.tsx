@@ -9,7 +9,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { NodeViewWrapper, NodeViewContent, type Editor } from '@tiptap/react'
 import { nanoid } from 'nanoid'
 import IIcon from '@/components/IIcon'
-import { NodeTypeEum } from '../../index'
+import { TypeEnum } from '../../index'
 import { useHeader, type headItem, useMove } from '@/store'
 import s from './index.module.scss'
 
@@ -108,7 +108,7 @@ const IBulletList = ({ updateAttributes, editor, node, getPos }: IProps) => {
           data-id={id}
           className={`${s.ulContainer} ${alignClass} nodeContainer`}
           data-tier={tier}
-          data-type={NodeTypeEum.BulleList}
+          data-type={TypeEnum.BulleList}
           ref={myRef}
         >
           {isOutOfViewPort ? (
@@ -119,7 +119,7 @@ const IBulletList = ({ updateAttributes, editor, node, getPos }: IProps) => {
                 tier % 3 === 1 ? s.icon1 : tier % 3 === 2 ? s.icon2 : s.icon3
               }`}
               data-id={id}
-              data-type={NodeTypeEum.BulleList}
+              data-type={TypeEnum.BulleList}
               data-tier={tier}
               style={{
                 paddingLeft: '22px',

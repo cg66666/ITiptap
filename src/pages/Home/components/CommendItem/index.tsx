@@ -8,7 +8,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { Input, Button, List } from 'antd'
 import { useComment, type CommentItem } from '@/store'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import _ from 'lodash'
 import s from './index.module.scss'
 
@@ -128,7 +128,7 @@ const CommendItem: React.FC<IProps> = ({ item, handledTop, isDemo, isComposing }
       style={{ top: handledTop || item.top }}
       // onClick={addCommend}
       data-id={item.id}
-      data-type={NodeTypeEum.Commend}
+      data-type={TypeEnum.Commend}
     >
       <div className={s.header}>{item.selectedText}</div>
       <div className={s.content}>

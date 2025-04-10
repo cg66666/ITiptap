@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2025-02-27 09:54:28
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 10:25:00
+ * @LastEditTime: 2025-04-10 10:30:46
  */
 // src/Tiptap.jsx
 import React, { useEffect, useRef, useState } from 'react'
@@ -165,7 +165,7 @@ const content = `
 // <i-ol start="5" tier="1" id="jjj">开始了开始了</i-ol>
 // <p id="etyjetyj">冲333</p>
 // <i-ol start="1" level="1" >开始了开始</i-ol>
-export enum NodeTypeEum {
+export enum TypeEnum {
   Paragraph = 'IParagraph',
   Header = 'IHeader',
   HeaderIcon = '3',
@@ -325,7 +325,7 @@ const Tiptap = () => {
       protocols: ['http', 'https'],
       HTMLAttributes: {
         class: 'ILink',
-        ['data-type']: NodeTypeEum.Link
+        ['data-type']: TypeEnum.Link
       },
       isAllowedUri: (url, ctx) => {
         try {
@@ -449,7 +449,7 @@ const Tiptap = () => {
         isHistoryOperate.current = false
       }
       // 新增mark场景
-      if (step instanceof RemoveMarkStep && step.mark.type.name == NodeTypeEum.Commend) {
+      if (step instanceof RemoveMarkStep && step.mark.type.name == TypeEnum.Commend) {
         const mark = step.mark
         const classist = mark.attrs.class.split(' ')
         const tiptap = document.getElementById('tiptap')
@@ -464,7 +464,7 @@ const Tiptap = () => {
       // 删除mark场景
       if (
         step instanceof AddMarkStep &&
-        step.mark.type.name == NodeTypeEum.Commend &&
+        step.mark.type.name == TypeEnum.Commend &&
         deleteCommentListObj[step.mark.attrs.id]
       ) {
         const mark = step.mark
@@ -484,7 +484,7 @@ const Tiptap = () => {
         handleRecoverComment(item.content.content)
       } else if (item.isText && item.marks.length) {
         item.marks.forEach((item2) => {
-          if (item2.type.name === NodeTypeEum.Commend && deleteCommentListObj[item2.attrs.id]) {
+          if (item2.type.name === TypeEnum.Commend && deleteCommentListObj[item2.attrs.id]) {
             const target = deleteCommentListObj[item2.attrs.id]
             commentList.splice(target.index || 0, 0, target)
             setCommentList([...commentList])
@@ -504,7 +504,7 @@ const Tiptap = () => {
         handleDeleteComment(item.content.content)
       } else if (item.isText && item.marks.length) {
         item.marks.forEach((item2) => {
-          if (item2.type.name === NodeTypeEum.Commend) {
+          if (item2.type.name === TypeEnum.Commend) {
             const classist = item2.attrs.class.split(' ')
             const tiptap = document.getElementById('tiptap')
             classist.forEach((class2) => {
@@ -693,7 +693,7 @@ const Tiptap = () => {
   // 滚动到指定位置的函数
   const scrollToPosition = (item: any) => {
     if (scrollbarRef.current) {
-      const dom = document.getElementById(item.id + '-' + NodeTypeEum.Header)?.children[0]
+      const dom = document.getElementById(item.id + '-' + TypeEnum.Header)?.children[0]
       dom?.classList.add('scrollHeaderTempShow')
       setTimeout(() => {
         dom?.classList.remove('scrollHeaderTempShow')
@@ -731,13 +731,13 @@ const Tiptap = () => {
     // 有序列表事件
     if (
       e.target.dataset.type &&
-      [NodeTypeEum.OrderListLabel].includes(e.target.dataset.type as NodeTypeEum)
+      [TypeEnum.OrderListLabel].includes(e.target.dataset.type as TypeEnum)
     ) {
       return
     }
     if (
       e.target.dataset.type &&
-      [NodeTypeEum.OrderListContent].includes(e.target.dataset.type as NodeTypeEum)
+      [TypeEnum.OrderListContent].includes(e.target.dataset.type as TypeEnum)
     ) {
       const orderDom = e.target
       if (!orderLabelConfig || orderLabelConfig.id != orderDom.dataset.id) {
@@ -766,17 +766,14 @@ const Tiptap = () => {
 
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i]
-      if (
-        element.dataset.type &&
-        [NodeTypeEum.Link].includes(element.dataset.type as NodeTypeEum)
-      ) {
+      if (element.dataset.type && [TypeEnum.Link].includes(element.dataset.type as TypeEnum)) {
         linkDom = element
       }
 
       // 节点类型可以直接结束
       if (
         element.dataset.type &&
-        [NodeTypeEum.Header, NodeTypeEum.HeaderIcon].includes(element.dataset.type as NodeTypeEum)
+        [TypeEnum.Header, TypeEnum.HeaderIcon].includes(element.dataset.type as TypeEnum)
       ) {
         nodeDom = element
         headerDom = element
@@ -785,24 +782,21 @@ const Tiptap = () => {
       if (
         element.dataset.type &&
         [
-          NodeTypeEum.BulleList,
-          NodeTypeEum.Header,
-          NodeTypeEum.HeaderIcon,
-          NodeTypeEum.OrderList,
-          NodeTypeEum.Paragraph,
-          NodeTypeEum.Task,
-          NodeTypeEum.Blockquote,
-          NodeTypeEum.CodeBlock,
-          NodeTypeEum.HighLightBlock
-        ].includes(element.dataset.type as NodeTypeEum)
+          TypeEnum.BulleList,
+          TypeEnum.Header,
+          TypeEnum.HeaderIcon,
+          TypeEnum.OrderList,
+          TypeEnum.Paragraph,
+          TypeEnum.Task,
+          TypeEnum.Blockquote,
+          TypeEnum.CodeBlock,
+          TypeEnum.HighLightBlock
+        ].includes(element.dataset.type as TypeEnum)
       ) {
         nodeDom = element
       }
 
-      if (
-        element.dataset.type &&
-        [NodeTypeEum.Commend].includes(element.dataset.type as NodeTypeEum)
-      ) {
+      if (element.dataset.type && [TypeEnum.Commend].includes(element.dataset.type as TypeEnum)) {
         commentDom = element
         break
       }
@@ -837,7 +831,7 @@ const Tiptap = () => {
 
       // 头部的标题特殊处理
       if (
-        type === NodeTypeEum.Header &&
+        type === TypeEnum.Header &&
         nodeDom.dataset &&
         nodeDom.dataset.istop &&
         JSON.parse(nodeDom.dataset.istop)
@@ -846,14 +840,14 @@ const Tiptap = () => {
       }
 
       // 特殊处理
-      if (type == NodeTypeEum.HeaderIcon) type = NodeTypeEum.Header
+      if (type == TypeEnum.HeaderIcon) type = TypeEnum.Header
 
       const rect = nodeDom.getBoundingClientRect()
       const x = (window.innerWidth - 750) / 2
       const node = editor.$node(type, { id })
       const showAdd = id == curLastId.current
       setFunctionBlockConfig({
-        x: x + ([NodeTypeEum.Header].includes(type) ? 0 : 20),
+        x: x + ([TypeEnum.Header].includes(type) ? 0 : 20),
         y: rect.y - 64 + scrollTop,
         id,
         type,
@@ -873,7 +867,7 @@ const Tiptap = () => {
       const { id } = nodeDom.dataset
       let { type } = nodeDom.dataset
       // 特殊情况
-      if (type === NodeTypeEum.OrderListContent) type = NodeTypeEum.OrderList
+      if (type === TypeEnum.OrderListContent) type = TypeEnum.OrderList
       const node = editor.$node(type, { id })
       const tempConfig = {
         start: 0,
@@ -892,7 +886,7 @@ const Tiptap = () => {
           for (let i = 0; i < children.length; i++) {
             if (children[i].marks.length) {
               const linkItem = children[i].marks.find((mark) => {
-                return mark.attrs.id == linkDom.id && mark.type.name == NodeTypeEum.Link
+                return mark.attrs.id == linkDom.id && mark.type.name == TypeEnum.Link
               })
               if (linkItem) {
                 if (!curConfig.start) {
@@ -979,13 +973,13 @@ const Tiptap = () => {
     }
 
     // 禁止某些默认事件
-    if (e.target.dataset.type === NodeTypeEum.HeaderIcon) {
+    if (e.target.dataset.type === TypeEnum.HeaderIcon) {
       e.preventDefault()
       e.stopPropagation()
       return
     }
     // 禁止某些默认事件
-    if (e.target.dataset.type === NodeTypeEum.Task && !e.target.dataset.ischeckedbody) {
+    if (e.target.dataset.type === TypeEnum.Task && !e.target.dataset.ischeckedbody) {
       e.preventDefault()
       e.stopPropagation()
       const isChecked = JSON.parse(e.target.dataset.ischecked)
@@ -1030,7 +1024,7 @@ const Tiptap = () => {
       const element = elements[i]
       if (
         element.dataset.type &&
-        [NodeTypeEum.CommendText].includes(element.dataset.type as NodeTypeEum)
+        [TypeEnum.CommendText].includes(element.dataset.type as TypeEnum)
       ) {
         commendTextDom = element
         break
@@ -1716,7 +1710,7 @@ const Tiptap = () => {
                 >
                   <Tooltip title="设置编号">
                     <div
-                      data-type={NodeTypeEum.OrderListLabel}
+                      data-type={TypeEnum.OrderListLabel}
                       className={s.orderLabel}
                       style={{
                         left: orderLabelConfig ? orderLabelConfig.x : 0,
@@ -1804,7 +1798,7 @@ const Tiptap = () => {
                   <div
                     className={s.showHref}
                     style={{ top: hoverLinkPosition.y, left: hoverLinkPosition.x }}
-                    data-type={NodeTypeEum.HoverLink}
+                    data-type={TypeEnum.HoverLink}
                     onMouseMove={(e) => {
                       e.stopPropagation()
                       e.preventDefault()

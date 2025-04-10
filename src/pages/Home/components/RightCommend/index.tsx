@@ -10,7 +10,7 @@ import { Input, Button, Spin } from 'antd'
 import { useComment, type CommentItem } from '@/store'
 import CommendItem from '../CommendItem'
 import { type Editor } from '@tiptap/react'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import _ from 'lodash'
 import s from './index.module.scss'
 // import { deleteComment } from '@/utils/deleteComment'
@@ -47,7 +47,7 @@ const RightCommend: React.FC<IProps> = ({ editor, tiptapHeight, isComposing }) =
   //     const element = elements[i]
   //     if (
   //       element.dataset.type &&
-  //       [NodeTypeEum.Commend].includes(element.dataset.type as NodeTypeEum)
+  //       [TypeEnum.Commend].includes(element.dataset.type as TypeEnum)
   //     ) {
   //       commentDom = element
   //       break
@@ -82,7 +82,7 @@ const RightCommend: React.FC<IProps> = ({ editor, tiptapHeight, isComposing }) =
   //   //   const element = elements[i]
   //   //   if (
   //   //     element.dataset.type &&
-  //   //     [NodeTypeEum.Commend].includes(element.dataset.type as NodeTypeEum)
+  //   //     [TypeEnum.Commend].includes(element.dataset.type as TypeEnum)
   //   //   ) {
   //   //     commentDom = element
   //   //     break
@@ -99,7 +99,7 @@ const RightCommend: React.FC<IProps> = ({ editor, tiptapHeight, isComposing }) =
   //     const element = elements[i]
   //     if (
   //       element.dataset.type &&
-  //       [NodeTypeEum.Commend].includes(element.dataset.type as NodeTypeEum)
+  //       [TypeEnum.Commend].includes(element.dataset.type as TypeEnum)
   //     ) {
   //       commentDom = element
   //       break
@@ -203,7 +203,7 @@ const RightCommend: React.FC<IProps> = ({ editor, tiptapHeight, isComposing }) =
           const element = elements[i]
           if (
             element.dataset.type &&
-            [NodeTypeEum.Commend].includes(element.dataset.type as NodeTypeEum)
+            [TypeEnum.Commend].includes(element.dataset.type as TypeEnum)
           ) {
             commentDom = element
             break

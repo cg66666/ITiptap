@@ -16,7 +16,7 @@ import {
   type Editor,
   NodePos
 } from '@tiptap/react'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import { Popover, Tooltip, Menu, type MenuProps } from 'antd'
 import { Scrollbars } from 'react-custom-scrollbars'
 import IIcon from '@/components/IIcon'
@@ -139,12 +139,12 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
 
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
 
-    if (functionBlockConfig.type == NodeTypeEum.Header && $myCustomPos.attributes.level == level) {
+    if (functionBlockConfig.type == TypeEnum.Header && $myCustomPos.attributes.level == level) {
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
         id: nanoid()
       })
     } else {
-      if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+      if (functionBlockConfig.type == TypeEnum.OrderList) {
         const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
         updateAtribute(editor, changeList)
       }
@@ -158,7 +158,7 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
   // 设置有序列表
   const setOrderedList = () => {
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
-    if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+    if (functionBlockConfig.type == TypeEnum.OrderList) {
       const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
       updateAtribute(editor, changeList)
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
@@ -201,12 +201,12 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
   // 设置无序列表
   const setBulletList = () => {
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
-    if (functionBlockConfig.type == NodeTypeEum.BulleList) {
+    if (functionBlockConfig.type == TypeEnum.BulleList) {
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
         id: nanoid()
       })
     } else {
-      if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+      if (functionBlockConfig.type == TypeEnum.OrderList) {
         const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
         updateAtribute(editor, changeList)
       }
@@ -220,12 +220,12 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
   // 设置任务列表
   const setTask = () => {
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
-    if (functionBlockConfig.type == NodeTypeEum.Task) {
+    if (functionBlockConfig.type == TypeEnum.Task) {
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
         id: nanoid()
       })
     } else {
-      if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+      if (functionBlockConfig.type == TypeEnum.OrderList) {
         const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
         updateAtribute(editor, changeList)
       }
@@ -238,12 +238,12 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
   // 设置引用块
   const setBlockquote = () => {
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
-    if (functionBlockConfig.type == NodeTypeEum.Blockquote) {
+    if (functionBlockConfig.type == TypeEnum.Blockquote) {
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
         id: nanoid()
       })
     } else {
-      if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+      if (functionBlockConfig.type == TypeEnum.OrderList) {
         const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
         updateAtribute(editor, changeList)
       }
@@ -256,12 +256,12 @@ const FunctionBlock: React.FC<IProps> = ({ editor, functionBlockConfig, setPaste
   // 设置高亮块
   const setHighlightBlock = () => {
     const $myCustomPos = editor.$pos(functionBlockConfig.pos) as NodePos
-    if (functionBlockConfig.type == NodeTypeEum.HighLightBlock) {
+    if (functionBlockConfig.type == TypeEnum.HighLightBlock) {
       convertNode(editor, functionBlockConfig.pos - 1, editor.schema.nodes.IParagraph, {
         id: nanoid()
       })
     } else {
-      if (functionBlockConfig.type == NodeTypeEum.OrderList) {
+      if (functionBlockConfig.type == TypeEnum.OrderList) {
         const changeList = deleteOrderItem(editor, $myCustomPos, functionBlockConfig.pos)
         updateAtribute(editor, changeList)
       }

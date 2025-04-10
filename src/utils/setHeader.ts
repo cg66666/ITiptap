@@ -8,7 +8,7 @@
 import { type Editor } from '@tiptap/react'
 import { updateAtribute } from './updateAtribute'
 import { convertNode } from './convertNode'
-import { NodeTypeEum } from '@/pages/Home'
+import { TypeEnum } from '@/pages/Home'
 import { setNodeOnOrderList } from './setNodeOnOrderList'
 
 export const setHeader = (editor: Editor, level: number) => {
@@ -29,12 +29,12 @@ export const setHeader = (editor: Editor, level: number) => {
     // 遍历从from到to之间的所有节点
     state.doc.nodesBetween(from, to, (node, pos) => {
       if (node.isBlock || (node.isInline && !node.isText)) {
-        if (node.type.name === NodeTypeEum.Header && node.attrs.level == level) {
+        if (node.type.name === TypeEnum.Header && node.attrs.level == level) {
           targetList.push({ node, pos })
         } else {
           otherList.push({ node, pos })
         }
-        if (node.type.name === NodeTypeEum.OrderList) {
+        if (node.type.name === TypeEnum.OrderList) {
           orderList.push({ node, pos })
           if (
             levelConfig[node.attrs.tier] &&
