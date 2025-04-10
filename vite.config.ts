@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2023-09-16 19:34:11
  * @LastEditors: cg
- * @LastEditTime: 2025-03-28 21:13:04
+ * @LastEditTime: 2025-04-10 11:09:59
  */
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
@@ -38,6 +38,9 @@ export default defineConfig(({ command, mode }) => {
           // rewrite: (path) => path.replace(/^\/state\/statement/, '/statement')
         }
       }
+    },
+    build: {
+      outDir: 'ITiptap'
     }
   }
 })
