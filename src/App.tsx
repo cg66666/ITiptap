@@ -21,7 +21,7 @@ import './App.scss'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path={import.meta.env.VITE_PREFIX} element={<Layout />}>
       <Route index element={<Home />} />
       {/* <Route path="about" element={<About />} /> */}
     </Route>

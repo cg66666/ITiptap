@@ -45,7 +45,7 @@
       opacity: 0.6;
     }
     &::before {
-      background-image: url('/check.svg');
+      background-image: url('/ITiptap/check.svg');
       background-size: contain;
     }
   }
@@ -67,7 +67,7 @@
       position: absolute;
       left: -20px;
       top: 6px;
-      background-image: url('/time.svg');
+      background-image: url('/ITiptap/time.svg');
       background-size: contain;
       width: 16px;
       height: 16px;
@@ -98,7 +98,7 @@
     text-decoration: line-through;
     color: #8b8f96 !important;
     &::before {
-      background-image: url('/timeChecked.svg') !important;
+      background-image: url('/ITiptap/timeChecked.svg') !important;
     }
   }
 

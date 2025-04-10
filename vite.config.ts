@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2023-09-16 19:34:11
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 16:13:23
+ * @LastEditTime: 2025-04-10 18:11:44
  */
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
@@ -33,10 +33,10 @@ export default defineConfig(({ command, mode }) => {
     server: {
       port: Number(env.VITE_BASE_PORT),
       proxy: {
-        'ITiptap/tiptap': {
+        '/ITiptap/tiptap': {
           target: env.VITE_BASE_URL, // 真实接口地址, 后端给的基地址
-          changeOrigin: true // 允许跨域
-          // rewrite: (path) => path.replace(/^\/state\/statement/, '/statement')
+          changeOrigin: true, // 允许跨域
+          rewrite: (path) => path.replace(/^\/ITiptap\/tiptap/, '/tiptap')
         }
       }
     },
