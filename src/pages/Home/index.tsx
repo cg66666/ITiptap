@@ -3,7 +3,7 @@
  * @Author: cg
  * @Date: 2025-02-27 09:54:28
  * @LastEditors: cg
- * @LastEditTime: 2025-04-10 21:56:20
+ * @LastEditTime: 2025-04-12 16:18:44
  */
 // src/Tiptap.jsx
 import React, { useEffect, useRef, useState } from 'react'
@@ -256,7 +256,12 @@ const Tiptap = () => {
   //   )
   // }
 
-  const { backMsg, sendMessage } = useWebSocket('ws://localhost:8888/ws/tiptap')
+  // const { backMsg, sendMessage } = useWebSocket('ws://localhost:8888/ws/tiptap')
+  const { backMsg, sendMessage } = useWebSocket(
+    import.meta.env.MODE === 'production'
+      ? 'wss://' + location.host + `/${import.meta.env.VITE_PREFIX}` + '/ws/tiptap'
+      : 'ws://localhost:8888/ws/tiptap'
+  )
 
   // 当前链接内容
   const [linkHref, setLinkHref] = useState('')
